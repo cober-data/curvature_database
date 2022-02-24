@@ -1,0 +1,32 @@
+name: data_platts
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+  schedule:
+    - cron: "54 8 * * *" # Run workflow everyday at 8:54 AM
+
+jobs:
+  email_platts:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+      - name: Setup Python Version
+        uses: actions/setup-python@v2
+        with:
+          python-version: 3.9 
+          
+      - name: Install dependencies
+        run: pip3 install -r requirements.txt
+    
+      - name: Fetch latest data & generate excel data
+        run: python3 ST_ICURVE.py
+        
+      - id: get-date
+        run: echo "::set-output name=value::$(date --iso-8601)"
+
+      - uses: stefanzweifel/git-auto-commit-action@v4
+        with:
+          commit_message: "bot: update graph for ${{ steps.get-date.outputs.value }}"
