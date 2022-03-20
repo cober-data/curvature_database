@@ -183,3 +183,26 @@ config = {"displayModeBar": False, "showTips": False}
 
 st.plotly_chart(fig, use_container_width=True,config=config )
 st.plotly_chart(fig1, use_container_width=True,config=config)
+
+################## ST LAYOUT do parte inferior ####################################################################################################
+html_br="""
+<br>
+"""
+st.markdown(html_br, unsafe_allow_html=True)
+
+html_line="""
+<br>
+<br>
+<br>
+<br>
+<p style="color:Gainsboro; text-align: left;">Source: OECD, Nicolas Woloszko.</p>
+<hr style= "  display: block;
+  margin-top: 0.5em;
+  margin-bottom: 0.5em;
+  margin-left: auto;
+  margin-right: auto;
+  border-style: inset;
+  border-width: 1.5px;">
+<p style="color:Gainsboro; text-align: right;">Application developed by: C0D_ATA</p>
+"""
+st.markdown(html_line, unsafe_allow_html=True)
