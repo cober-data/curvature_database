@@ -178,5 +178,8 @@ df_country = build_country_df()
 fig = ts_plot(df_country,f'Bond term structure curvature for {slc_country}','Curvature',-0.3 )
 fig1 = ts_plot(df,f'Bond yields in {slc_country}','Yield',-0.5)
 
-st.plotly_chart(fig, )
-st.plotly_chart(fig1)
+
+config = {"displayModeBar": False, "showTips": False}
+
+st.plotly_chart(fig, use_container_width=True,config=config )
+st.plotly_chart(fig1, use_container_width=True,config=config)
