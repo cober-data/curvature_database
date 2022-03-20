@@ -115,6 +115,61 @@ def outliers_nan(df):
 #build df for a given selected country set as global variable
 df_country = build_country_df()
 
+
+############################################# HTML CODE ##############################################################################
+html_header="""
+<head>
+<style> @import url('https://fonts.googleapis.com/css2?family=Mulish:wght@400;500;600;700;800&display=swap'); 
+@import url('https://fonts.googleapis.com/css2?family=Crimson+Text:wght@400;600;700&display=swap'); </style>
+<title>C0D_ATA </title>
+<meta charset="utf-8">
+<meta name="keywords" content="Economics, data science, OCDE, GDP, streamlit, visualizer, data">
+<meta name="description" content="C0D_ATA Data Project">
+<meta name="author" content="@Cober">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<h1 style="font-size:300%; color:#0A3254; font-family:Mulish; font-weight:800"> OECD Weekly Gdp Visualizer   
+<br>
+ <hr style= "  display: block;
+  margin-top: 0.5em;
+  margin-bottom: 0.5em;
+  margin-left: auto;
+  margin-right: auto;
+  border-style: inset;
+  border-width: 1px;"></h1>
+"""
+
+html_line_2="""
+<br>
+<hr style= "  display: block;
+  margin-top: 0.3em;
+  margin-bottom: 0.5em;
+  margin-left: auto;
+  margin-right: auto;
+  border-style: inset;
+  border-width: 1px;">
+"""
+
+link_png = 'https://raw.githubusercontent.com/caiquecober/Research/master/logo_sem_nome.-PhotoRoom.png'
+
+st.set_page_config(page_title="C0D_DATA - OCDE Weekly data visualizer", page_icon=link_png, layout="wide")
+
+padding = 1.2
+st.markdown(f""" <style>
+    .reportview-container .main .block-container{{
+        padding-top: {padding}rem;
+        padding-right: {padding}rem;
+        padding-left: {padding}rem;
+        padding-bottom: {padding}rem;
+    }} </style> """, unsafe_allow_html=True)
+
+st.markdown('<style>body{background-color: #D2D5D4}</style>',unsafe_allow_html=True)
+st.markdown(html_header, unsafe_allow_html=True)
+st.markdown(""" <style> 
+#MainMenu {visibility: hidden;}
+footer {visibility: hidden;}
+</style> """, unsafe_allow_html=True)
+
 ##################################################### Streamlit app front end plots and html injections ###########################################################################
 
 fig = ts_plot(df_country,f'Bond term structure curvature for {slc_country}','Curvature',-0.3 )
