@@ -47,24 +47,7 @@ def ts_plot(df, nome, units,space):
                                  
     return fig
 
-# create list with available countries
-countries_lst = ['Australia', 'Belgium', 'Brazil', 'Canada', 'Chile',
-       'China', 'Colombia', 'Czech Republic', 'Egypt', 'France', 'Germany',
-       'Greece', 'Hong Kong', 'Hungary', 'India', 'Indonesia', 'Israel',
-       'Italy', 'Japan', 'Malaysia', 'Mexico', 'Morocco',
-       'Netherlands', 'Pakistan', 'Portugal', 'Romania', 'Russia',
-       'Singapore', 'Slovenia', 'South Africa', 'South Korea', 'Spain',
-       'Sri Lanka', 'Thailand', 'Turkey', 'Uganda',
-       'United Kingdom', 'United States', 'Vietnam']
 
-# select a country
-slc_country =  st.selectbox('',countries_lst)
-
-# read in bonds for that country
-df = pd.read_excel(f'Bonds_{slc_country}.xlsx')
-df = df.set_index('Date')
-#df = df.mask(df.sub(df.mean()).div(df.std()).abs().gt(3))
-df = df.fillna(method='ffill')
 
 @st.cache()
 def load_curvature():
@@ -76,9 +59,6 @@ def load_curvature():
 
     return df_full,df_short,df_long
  
-# load in curvature calculations
-df_full, df_short, df_long =  load_curvature()
-
 
 def build_country_df():
     ''' function to build the df with the curvatures'''
@@ -112,13 +92,9 @@ def outliers_nan(df):
     return df 
 
 
-#build df for a given selected country set as global variable
-df_country = build_country_df()
-
-
 ############################################# HTML CODE ##############################################################################
-html_header="""
-<head>
+
+html_header="""<head>
 <style> @import url('https://fonts.googleapis.com/css2?family=Mulish:wght@400;500;600;700;800&display=swap'); 
 @import url('https://fonts.googleapis.com/css2?family=Crimson+Text:wght@400;600;700&display=swap'); </style>
 <title>C0D_ATA </title>
@@ -169,6 +145,33 @@ st.markdown(""" <style>
 #MainMenu {visibility: hidden;}
 footer {visibility: hidden;}
 </style> """, unsafe_allow_html=True)
+ 
+####################################################### Load Data #####################################################################################################
+
+# create list with available countries
+countries_lst = ['Australia', 'Belgium', 'Brazil', 'Canada', 'Chile',
+       'China', 'Colombia', 'Czech Republic', 'Egypt', 'France', 'Germany',
+       'Greece', 'Hong Kong', 'Hungary', 'India', 'Indonesia', 'Israel',
+       'Italy', 'Japan', 'Malaysia', 'Mexico', 'Morocco',
+       'Netherlands', 'Pakistan', 'Portugal', 'Romania', 'Russia',
+       'Singapore', 'Slovenia', 'South Africa', 'South Korea', 'Spain',
+       'Sri Lanka', 'Thailand', 'Turkey', 'Uganda',
+       'United Kingdom', 'United States', 'Vietnam']
+
+# select a country
+slc_country =  st.selectbox('',countries_lst)
+
+# read in bonds for that country
+df = pd.read_excel(f'Bonds_{slc_country}.xlsx')
+df = df.set_index('Date')
+#df = df.mask(df.sub(df.mean()).div(df.std()).abs().gt(3))
+df = df.fillna(method='ffill')
+
+# load in curvature calculations
+df_full, df_short, df_long =  load_curvature()
+
+#build df for a given selected country set as global variable
+df_country = build_country_df()
 
 ##################################################### Streamlit app front end plots and html injections ###########################################################################
 
