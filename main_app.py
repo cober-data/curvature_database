@@ -195,7 +195,7 @@ html_line="""
 <br>
 <br>
 <br>
-<p style="color:Gainsboro; text-align: left;">Source: OECD, Nicolas Woloszko.</p>
+<p style="color:Gainsboro; text-align: left;">Source: Investing.com, BIS.</p>
 <hr style= "  display: block;
   margin-top: 0.5em;
   margin-bottom: 0.5em;
