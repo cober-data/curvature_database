@@ -99,12 +99,12 @@ html_header="""<head>
 @import url('https://fonts.googleapis.com/css2?family=Crimson+Text:wght@400;600;700&display=swap'); </style>
 <title>C0D_ATA </title>
 <meta charset="utf-8">
-<meta name="keywords" content="Economics, data science, OCDE, GDP, streamlit, visualizer, data">
+<meta name="keywords" content="Economics, data science, interest rates, bonds, streamlit, visualizer, data">
 <meta name="description" content="C0D_ATA Data Project">
 <meta name="author" content="@Cober">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
-<h1 style="font-size:300%; color:#0A3254; font-family:Mulish; font-weight:800"> OECD Weekly Gdp Visualizer   
+<h1 style="font-size:300%; color:#0A3254; font-family:Mulish; font-weight:800"> Interest Rate Term Structure
 <br>
  <hr style= "  display: block;
   margin-top: 0.5em;
@@ -128,9 +128,9 @@ html_line_2="""
 
 link_png = 'https://raw.githubusercontent.com/caiquecober/Research/master/logo_sem_nome.-PhotoRoom.png'
 
-st.set_page_config(page_title="C0D_DATA - OCDE Weekly data visualizer", page_icon=link_png, layout="wide")
+st.set_page_config(page_title="C0D_DATA - Interest Rate Term Structure", page_icon=link_png, layout="wide")
 
-padding = 1.2
+padding = 1.5
 st.markdown(f""" <style>
     .reportview-container .main .block-container{{
         padding-top: {padding}rem;
@@ -178,5 +178,5 @@ df_country = build_country_df()
 fig = ts_plot(df_country,f'Bond term structure curvature for {slc_country}','Curvature',-0.3 )
 fig1 = ts_plot(df,f'Bond yields in {slc_country}','Yield',-0.5)
 
-st.plotly_chart(fig)
+st.plotly_chart(fig, )
 st.plotly_chart(fig1)
