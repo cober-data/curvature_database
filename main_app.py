@@ -181,6 +181,10 @@ fig1 = ts_plot(df,f'Bond yields in {slc_country}','Yield',-0.5)
 
 config = {"displayModeBar": False, "showTips": False}
 
+st.write('Full = curvature of the full term structure')
+st.write('Short = curvature of the contracts before the 5 year (including)')
+st.write('Long = curvature of the contracts after the 5 year ')
+
 st.plotly_chart(fig, use_container_width=True,config=config )
 st.plotly_chart(fig1, use_container_width=True,config=config)
 
