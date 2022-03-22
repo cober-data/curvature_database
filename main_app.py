@@ -64,8 +64,8 @@ def build_country_df():
     ''' function to build the df with the curvatures'''
     df_country = df_full[['date',f'{slc_country}']]
     df_country.columns =  ['date','Full']
-    df_country['Long'] = df_long[slc_country]
-    df_country['Short'] = df_short[slc_country]
+    df_country['After 5 year bond'] = df_long[slc_country]
+    df_country['Before de 5 year bond'] = df_short[slc_country]
     df = df_country.set_index('date')
     df = df.mask(df.sub(df.mean()).div(df.std()).abs().gt(2.7))
     df = df.fillna(method='ffill')
@@ -181,9 +181,6 @@ fig1 = ts_plot(df,f'Bond yields in {slc_country}','Yield',-0.5)
 
 config = {"displayModeBar": False, "showTips": False}
 
-st.write('Full = curvature of the full term structure')
-st.write('Short = curvature of the contracts before the 5 year (including)')
-st.write('Long = curvature of the contracts after the 5 year ')
 
 st.plotly_chart(fig, use_container_width=True,config=config )
 st.plotly_chart(fig1, use_container_width=True,config=config)
