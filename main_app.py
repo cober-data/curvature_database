@@ -64,8 +64,8 @@ def build_country_df():
     ''' function to build the df with the curvatures'''
     df_country = df_full[['date',f'{slc_country}']]
     df_country.columns =  ['date','Full']
-    df_country['After 5 year bond'] = df_long[slc_country]
-    df_country['Before de 5 year bond'] = df_short[slc_country]
+    df_country['After the 5 year bond'] = df_long[slc_country]
+    df_country['Before the 5 year bond'] = df_short[slc_country]
     df = df_country.set_index('date')
     df = df.mask(df.sub(df.mean()).div(df.std()).abs().gt(2.7))
     df = df.fillna(method='ffill')
